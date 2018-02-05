@@ -11,14 +11,14 @@ namespace sshSandbox
     {
         static void Main(string[] args)
         {
-            var connectionInfo = new ConnectionInfo("address",
-                "idd17",
-                new PasswordAuthenticationMethod("userName", "password"));
+            var connectionInfo = new ConnectionInfo("hsotname",
+                "username",
+                new PasswordAuthenticationMethod("username", "password"));
             using (var client = new SshClient(connectionInfo))
             {
                 client.Connect();
                 Console.WriteLine($"The client is connected: {client.IsConnected}");
-                Console.WriteLine(client.CreateCommand("ls").Execute());
+                Console.WriteLine($"Output: {client.CreateCommand("python ~Source/test.py").Execute()}");
                 Console.ReadLine();
             }
         }
